@@ -1,3 +1,5 @@
+import numpy as np
+import scipy.stats as sts
 def f_test(x, y):
     '''Функция, рассчитывающая статистику F-теста и соответсвующее значение p_value'''
 
