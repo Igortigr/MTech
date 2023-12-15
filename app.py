@@ -1,26 +1,11 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 import scipy.stats as sts
 from F_test import f_test
 from Plot import plot
 from testng_hypotheses import testing_hypotheses_1, testing_hypotheses_2
+from Load_Data import load_data
 st.title('Data analysis')
 data = st.file_uploader('Загрузите файл с данными')
-
-
-def load_data(data):
-    '''Функция приведения в нормальный вид данные'''
-
-    df = pd.read_csv(data, encoding='Windows-1251')
-    df[['Количество больничных дней', 'Возраст', 'Пол']] \
-        = df['Количество больничных дней,"Возраст","Пол"'].str.split(',', expand=True)
-    df.drop('Количество больничных дней,"Возраст","Пол"', axis=1, inplace=True)
-    df['Количество больничных дней'] = df['Количество больничных дней'].astype(np.int32)
-    df['Возраст'] = df['Возраст'].astype(np.int32)
-    return df
-
-
 
 if data is not None:
     df = load_data(data)
