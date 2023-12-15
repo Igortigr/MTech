@@ -4,7 +4,7 @@ import numpy as np
 import scipy.stats as sts
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from F_test import f_test
 st.title('Data analysis')
 data = st.file_uploader('Загрузите файл с данными')
 
@@ -43,16 +43,6 @@ def plot(arr1, arr2, hyp=1):
     sns.histplot(arr1)
     sns.histplot(arr2)
     st.pyplot(fig)
-
-
-def f_test(x, y):
-    '''Функция, рассчитывающая статистику F-теста и соответсвующее значение p_value'''
-
-    f = np.var(x, ddof=1) / np.var(y, ddof=1)
-    dfn = x.size - 1
-    dfd = y.size - 1
-    p = 1 - sts.f.cdf(f, dfn, dfd)
-    return f, p
 
 
 def testing_hypotheses_1(p_value):
